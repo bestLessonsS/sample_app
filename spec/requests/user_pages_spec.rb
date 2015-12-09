@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "User pages" do
+	let(:base_title) { "Ruby on Rails Tutorial Sample App" }
 
   subject { page }
 
