@@ -6,6 +6,8 @@ describe "Static pages" do
 
   subject { page }
 
+
+
   describe "Home page" do
     before {visit root_path}
 
@@ -31,7 +33,22 @@ describe "Static pages" do
   describe "Contacts page" do
     before {visit contacts_path} 
   	
-    it { should have_content('Contacts') }
+    it { should have_selector('h1', text: 'Contacts') }
     it { have_title("#{base_title} | Contacts") }
+  end
+
+  it "should have the right links on the layout" do
+    visit root_path
+    click_link "About"
+    expect(page).to have_title("#{base_title} | About Us")
+    click_link "Help"
+    expect(page).to have_title("#{base_title} | Help")
+    click_link "Contacts"
+    expect(page).to have_title("#{base_title} | Contacts")
+    click_link "Home"
+    click_link "Sign up now!"
+    expect(page).to have_title("#{base_title} | Sign up")
+    click_link "sample app"
+    expect(page).to have_title("#{base_title}")
   end
 end
